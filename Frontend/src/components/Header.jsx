@@ -23,13 +23,13 @@ export default function Header() {
   };
   return (
     <header
-      className={`site-header ${compact && !dismissed ? "is-compact" : ""} ${dismissed ? "is-dismissed" : ""}`}
+      className={`sticky top-0 z-20 bg-[var(--color-paper)] transition-transform duration-300 ${compact && !dismissed ? "-translate-y-11" : ""}`}
     >
       {!dismissed && (
-        <div className="announcement" role="status">
+        <div className="flex min-h-11 items-center justify-center gap-3 bg-[var(--color-accent)] text-xs uppercase tracking-[.08em] text-[var(--color-accent-ink)]" role="status">
           <span>For collectors and independent sellers.</span>
           <button
-            className="icon-button"
+            className="min-h-11 min-w-11 bg-transparent text-xl leading-none"
             onClick={() => setDismissed(true)}
             aria-label="Dismiss announcement"
           >
@@ -37,24 +37,24 @@ export default function Header() {
           </button>
         </div>
       )}
-      <nav className="main-nav" aria-label="Main navigation">
-        <Link to="/" className="brand">
-          SNITCH<span>.</span>
+      <nav className="mx-auto grid min-h-18 w-[calc(100%-3rem)] max-w-304 grid-cols-3 items-center gap-4 max-md:grid-cols-[auto_1fr]" aria-label="Main navigation">
+        <Link to="/" className="font-[var(--font-display)] text-3xl font-bold tracking-[-.06em]">
+          SNITCH<span className="text-[var(--color-accent)]">.</span>
         </Link>
-        <div className="nav-links">
+        <div className="flex gap-6 text-sm max-md:hidden">
           <NavLink to="/products">Catalogue</NavLink>
           {user && <NavLink to="/account">Account</NavLink>}
           {user?.role === "seller" && (
             <NavLink to="/seller/products/new">Seller studio</NavLink>
           )}
         </div>
-        <div className="nav-actions">
+        <div className="justify-self-end">
           {user ? (
-            <button className="text-button" onClick={signOut}>
+            <button className="text-sm font-bold text-[var(--color-accent-deep)] underline decoration-[var(--color-accent)] underline-offset-4" onClick={signOut}>
               Sign out
             </button>
           ) : (
-            <Link className="nav-cta" to="/login">
+            <Link className="rounded border border-[var(--color-ink)] px-4 py-2 text-sm font-bold" to="/login">
               Sign in
             </Link>
           )}

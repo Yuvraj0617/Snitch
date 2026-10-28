@@ -44,7 +44,8 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const clearSession = () => setUser(null);
     window.addEventListener("snitch:session-expired", clearSession);
-    return () => window.removeEventListener("snitch:session-expired", clearSession);
+    return () =>
+      window.removeEventListener("snitch:session-expired", clearSession);
   }, []);
   return (
     <AuthContext.Provider value={{ user, isLoading, authenticate, logout }}>

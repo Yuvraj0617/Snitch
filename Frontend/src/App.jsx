@@ -17,13 +17,13 @@ function RequireAuth({ children, sellerOnly = false }) {
 
 function HomePage() {
   return (
-    <main className="page-shell home-page">
-      <section className="catalogue-intro" aria-labelledby="home-title">
+    <main className="mx-auto w-[calc(100%-3rem)] max-w-304 py-18 max-sm:w-[calc(100%-2rem)] max-sm:py-12">
+      <section className="grid grid-cols-2 gap-12 max-md:grid-cols-1 max-md:gap-6" aria-labelledby="home-title">
         <div>
-          <p className="overline">Snitch / online catalogue</p>
-          <h1 id="home-title">Objects of daily distinction.</h1>
+          <p className="mb-3 text-xs font-bold uppercase tracking-[.08em] text-[var(--color-muted)]">Snitch / online catalogue</p>
+          <h1 id="home-title" className="font-[var(--font-display)] text-[clamp(3rem,7vw,6.5rem)] leading-none tracking-[-.06em]">Objects of daily distinction.</h1>
         </div>
-        <p className="intro-copy">
+        <p className="max-w-md self-end text-lg text-[var(--color-muted)]">
           A considered edit from independent sellers. Browse what is published,
           then sign in when you are ready to keep your place.
         </p>
@@ -39,19 +39,19 @@ function AuthPage({ mode }) {
 
 function Footer() {
   return (
-    <footer className="site-footer">
-      <p className="footer-mark">SNITCH.</p>
-      <p className="footer-line">
+    <footer className="mx-auto mt-auto grid w-[calc(100%-3rem)] max-w-304 grid-cols-[auto_minmax(0,1fr)_auto] items-baseline gap-6 border-t border-[var(--color-rule)] py-12 text-sm text-[var(--color-muted)] max-sm:grid-cols-1 max-sm:gap-2 max-sm:w-[calc(100%-2rem)]">
+      <p className="font-[var(--font-display)] text-3xl font-bold tracking-[-.06em] text-[var(--color-ink)]">SNITCH.</p>
+      <p className="max-w-100">
         A quieter way to discover what is worth keeping.
       </p>
-      <p className="footer-meta">Catalogue · Account · Seller studio</p>
+      <p className="justify-self-end max-sm:justify-self-start">Catalogue · Account · Seller studio</p>
     </footer>
   );
 }
 
 export default function App() {
   return (
-    <div className="app-shell">
+    <div className="flex min-h-screen flex-col bg-[var(--color-paper)]">
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />

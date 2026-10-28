@@ -5,11 +5,17 @@ import Product from '../routes/product.route.js';
 import cors from "cors"
 const app = Express();
 
+// Allow the deployed Vercel frontend via CORS_ORIGIN env var,
+// with localhost as a fallback for local development.
+// With credentials: true, origin cannot be '*', so list exact origins.
+const corsOrigin = process.env.CORS_ORIGIN ?? 'http://localhost:5173';
+
 app.use(cors({
-    origin: 'http://localhost:5173',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    credentials: true
-}))
+    origin: corsOrigin,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+}));
 app.use(Express.json());
 if (process.env.NODE_ENV !== "production") {
     app.use((req, res, next) => {
